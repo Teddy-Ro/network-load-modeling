@@ -1,0 +1,357 @@
+@font-face {
+    font-family: 'Figtree';
+    src: url('../fonts/Figtree-VariableFont_wght.ttf') format('truetype');
+    font-weight: 300 900;  /* диапазон оси wght */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Сброс и Базовые стили --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: rgb(23, 24, 27);
+    font-family: Figtree, sans-serif;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0px;
+    text-transform: none;
+    background-color: rgb(252, 250, 244);
+}
+
+/* --- Контейнер --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Шапка (Header) --- */
+.site-header {
+    background-color: rgb(254, 254, 252);
+    height: 80px;
+    margin: 15px; /* Отступы от краев */
+    border-radius: 15px; /* Закругленные края */
+    /* Sticky эффект: шапка прилипает к верху */
+    position: sticky;
+    top: 15px; /* Чтобы оставался отступ при скролле */
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* --- Навигация --- */
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #4a4a4a;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s;
+    padding: 25px 0; /* Увеличиваем область наведения */
+    display: block;
+}
+
+.nav-link:hover {
+    color: #F46C38; /* Оранжевый цвет как у Kentik */
+}
+
+.arrow {
+    font-size: 10px;
+    vertical-align: middle;
+}
+
+/* --- Mega Menu (Выпадающее) --- */
+.nav-item.has-dropdown {
+    position: static; /* Важно для full-width меню, или relative для узкого */
+    position: relative; 
+}
+
+.mega-menu {
+    position: absolute;
+    top: 100%; /* Появляется сразу под header */
+    left: -100px; /* Смещение, чтобы центрировать (или используйте left: 0 и width: 100% для full-width) */
+    width: 600px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    
+    /* Скрываем по умолчанию */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+/* Показ меню при наведении на li */
+.nav-item:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mega-column h4 {
+    margin-bottom: 15px;
+    color: #000;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mega-column a {
+    display: block;
+    text-decoration: none;
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.mega-column a:hover {
+    color: #F46C38;
+}
+
+.mega-column.featured {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+/* --- Кнопки (Actions) --- */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-login {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+.btn-primary {
+    text-decoration: none;
+    background: linear-gradient(90deg, #F46C38 0%, #D94418 100%);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(244, 108, 56, 0.3);
+}
+
+/* --- Мобильный бургер (скрыт на ПК) --- */
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+}
+
+/* --- Адаптив (Mobile) --- */
+@media (max-width: 900px) {
+    .main-nav, .header-actions {
+        display: none; /* Скрываем меню и кнопки на мобильных */
+    }
+    
+    .burger-menu {
+        display: flex;
+    }
+
+    /* Мобильное меню при открытии (активируется через JS) */
+    .site-header.active .main-nav {
+        display: block;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .mega-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none; /* Скрываем подменю на моб, открываем по клику (нужен доп JS) */
+        padding-left: 20px;
+        border-left: 1px solid #eee;
+    }
+    
+    /* Для простоты на мобильном показываем мега-меню всегда или по ховеру */
+    .nav-item:hover .mega-menu {
+        display: block;
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: center; /* По горизонтали */
+    align-items: center;     /* По вертикали */
+
+    padding: 8px 0 42px;
+    background: #FCFAF4;
+}
+
+.content-buble {
+    padding: 0 24px;
+}
+
+.card-container {
+    display: flex; /* Выстраиваем колонки в ряд */
+    flex-direction: row;
+    align-items: center; /* Центрируем по вертикали */
+    gap: 60px; /* Расстояние между картинкой и текстом */
+    
+    max-width: 1100px;
+    padding: 40px;
+    
+    border: 1px solid rgb(182, 195, 209); /* Светло-голубая рамка */
+    border-radius: 30px; /* Сильное скругление углов */
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.image-container {
+        margin: -40;
+    padding: 40;
+    flex: 1.2;
+}
+
+.image-box {
+
+}
+
+
+
+/* --- Левая часть (Изображение) --- */
+.card-image-wrapper {
+    border-radius: 15px;
+    border-width: 10px;
+    background-color: #fff
+
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb; /* Тонкая рамка вокруг картинки */
+    position: relative;
+    z-index: 2; /* Картинка поверх фиолетового фона */
+    background: white; /* Фон картинки, если прозрачная */
+}
+
+/* Фиолетовая плашка снизу */
+.purple-accent {
+    position: absolute;
+    bottom: -12px; /* Сдвигаем вниз */
+    padding-left: 20px;    /* Сдвигаем вправо/влево по вкусу (на скрине она просто снизу) */
+    right: 20px;   /* Делаем её чуть уже картинки или можно left:0 right:0 */
+    
+    /* Вариант как на картинке (сплошная плашка под низом): */
+    width: 100%;
+    left: 0;
+    height: 100%;
+    
+    background-color: #6d28d9; /* Фиолетовый цвет */
+    border-radius: 12px;
+    z-index: 1; /* Под картинкой */
+    transform: translateY(12px); /* Сдвиг только вниз */
+}
+
+/* --- Правая часть (Текст) --- */
+.card-content {
+    flex: 1; /* Занимает оставшееся место */
+    color: #111827;
+}
+
+.card-content h2 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.card-content ul {
+    padding-left: 20px; /* Отступ для точек списка */
+    margin: 0;
+}
+
+.card-content li {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #374151; /* Темно-серый цвет текста */
+    margin-bottom: 24px;
+}
+
+/* --- Адаптивность для мобильных --- */
+@media (max-width: 900px) {
+    .card-container {
+        flex-direction: column; /* Элементы друг под другом */
+        padding: 30px;
+        gap: 40px;
+    }
+    
+    .card-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+footer {
+    padding: 100px 20px;
+    text-align: center;
+    background: #0b1a33;
+    color: white;
+}

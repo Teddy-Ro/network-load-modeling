@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kentik Style Header</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <!-- 1. Логотип -->
+            <a href="#" class="logo">
+                <svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Заглушка для логотипа -->
+                    <rect width="30" height="30" fill="#F46C38"/>
+                    <text x="40" y="22" font-family="Arial" font-weight="bold" font-size="20" fill="#333">BRAND</text>
+                </svg>
+            </a>
+
+            <!-- 2. Навигация (Центр) -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <!-- Пункт с Мега-меню -->
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">Platform <span class="arrow">▼</span></a>
+                        
+                        <!-- Контейнер выпадающего меню -->
+                        <div class="mega-menu">
+                            <div class="mega-column">
+                                <h4>Capabilities</h4>
+                                <a href="#">Network Observability</a>
+                                <a href="#">Cloud Monitoring</a>
+                                <a href="#">DDoS Defense</a>
+                            </div>
+                            <div class="mega-column">
+                                <h4>Use Cases</h4>
+                                <a href="#">Troubleshooting</a>
+                                <a href="#">Capacity Planning</a>
+                                <a href="#">Cost Management</a>
+                            </div>
+                            <div class="mega-column featured">
+                                <h4>New Feature</h4>
+                                <p>Check out our AI tools.</p>
+                                <a href="#" class="text-link">Learn more &rarr;</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item"><a href="#" class="nav-link">Solutions</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+                </ul>
+            </nav>
+
+            <!-- 3. Кнопки действий (Справа) -->
+            <div class="header-actions">
+                <a href="#" class="btn-login">Log In</a>
+                <a href="#" class="btn-primary">Start Free Trial</a>
+            </div>
+
+            <!-- 4. Бургер для мобильных -->
+            <button class="burger-menu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Контент для проверки скролла -->
+    <section class="content">
+        <div class="content-buble">
+            <div class="card-container">
+                <!-- Левая колонка: Изображение с эффектом -->
+                <div class="image-container">
+                    <div class="image-box">
+                        <div class="card-image-wrapper">
+                            <!-- Само изображение -->
+                            <img src="img/203116.png" alt="Interface Screenshot" class="main-image">
+                            <!-- Фиолетовая плашка (можно сделать через псевдоэлемент, но для наглядности div) -->
+                            <!-- <div class="purple-accent"></div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка: Текст -->
+                <div class="card-content">
+                    <h2>Understand and optimize cloud migration costs</h2>
+                    <ul>
+                        <li>Drive fast.</li>
+                        <li>Make economical decisions on capacity.</li>
+                        <li>Optimize hybrid cloud.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div style="height: 200vh; background: rgb(252, 250, 244);"></div>
+
+    <footer>
+        <h1>Футер</h1>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
