@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — CloudCalc</title>
+    <!-- Подключаем тот же самый CSS-файл, чтобы дизайн был одинаковым -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== HEADER (точно такой же, как на главной) ===== -->
+    <header class="site-header">
+        <div class="container header-content">
+            <!-- Ссылка при клике на логотип теперь ведет на главную (index.html) -->
+            <a href="index.html" class="logo">
+                <svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#F46C38"/>
+                    <text x="8" y="23" font-family="Figtree, Arial" font-weight="800" font-size="18" fill="#fff">C</text>
+                    <text x="42" y="23" font-family="Figtree, Arial" font-weight="700" font-size="18" fill="#17181B">CloudCalc</text>
+                </svg>
+            </a>
+
+            <nav class="main-nav">
+                <ul class="nav-list">                    
+                    <!-- Ссылки на страницы -->
+                    <li class="nav-item"><a href="index.html" class="nav-link">Calculator</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+            <!-- ===== FEATURE CARD С ИНФОРМАЦИЕЙ ===== -->
+    <section class="content" id="calculator">
+        <div class="content-bubble">
+            <div class="card-container">
+                 <div class="container" style="padding: 40px 24px; min-height: 50vh;">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 20px;">О проекте</h1>
+                    <p style="font-size: 1.2rem; color: #4B5563; line-height: 1.8; max-width: 800px;">
+                        Это вторая страница. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER (точно такой же, как на главной) ===== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand">
+                <svg width="120" height="28" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#F46C38"/>
+                    <text x="8" y="23" font-family="Figtree, Arial" font-weight="800" font-size="18" fill="#fff">C</text>
+                    <text x="42" y="23" font-family="Figtree, Arial" font-weight="700" font-size="18" fill="#fff">CloudCalc</text>
+                </svg>
+                <p>Сиайт для вычисления вычислений.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <!-- Здесь тоже можно указать ссылки на about.html -->
+                <a href="about.html">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2025 CloudCalc. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Если на этой странице нет калькулятора, скрипт можно не подключать.
+         Или подключить, если там будут другие интерактивные элементы -->
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>

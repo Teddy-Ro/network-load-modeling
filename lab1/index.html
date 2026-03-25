@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudCalc — Optimize Your Cloud Spend</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#F46C38"/>
+                    <text x="8" y="23" font-family="Figtree, Arial" font-weight="800" font-size="18" fill="#fff">C</text>
+                    <text x="42" y="23" font-family="Figtree, Arial" font-weight="700" font-size="18" fill="#17181B">CloudCalc</text>
+                </svg>
+            </a>
+
+            <nav class="main-nav">
+                <ul class="nav-list">                    
+                    <li class="nav-item"><a href="index.html" class="nav-link">Calculator</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+        <!-- ===== FEATURE CARD С КАЛЬКУЛЯТОРОМ ===== -->
+    <section class="content" id="calculator">
+        <div class="content-bubble">
+            <div class="card-container">
+                
+                <!-- Левая часть: Калькулятор с декоративной подложкой -->
+                <div class="calc-presentation">
+                    <div class="calculator">
+                        <!-- Дисплей -->
+                        <div class="calc-display">
+                            <div class="calc-expression" id="expression"></div>
+                            <div class="calc-result" id="result">0</div>
+                        </div>
+
+                        <!-- Кнопки -->
+                        <div class="calc-buttons">
+                            <!-- Ряд 1 -->
+                            <button class="calc-btn func" data-action="clear">AC</button>
+                            <button class="calc-btn func" data-action="sign">+/−</button>
+                            <button class="calc-btn func" data-action="percent">%</button>
+                            <button class="calc-btn op" data-action="operator" data-value="/">÷</button>
+
+                            <!-- Ряд 2 -->
+                            <button class="calc-btn digit" data-value="7">7</button>
+                            <button class="calc-btn digit" data-value="8">8</button>
+                            <button class="calc-btn digit" data-value="9">9</button>
+                            <button class="calc-btn op" data-action="operator" data-value="*">×</button>
+
+                            <!-- Ряд 3 -->
+                            <button class="calc-btn digit" data-value="4">4</button>
+                            <button class="calc-btn digit" data-value="5">5</button>
+                            <button class="calc-btn digit" data-value="6">6</button>
+                            <button class="calc-btn op" data-action="operator" data-value="-">−</button>
+
+                            <!-- Ряд 4 -->
+                            <button class="calc-btn digit" data-value="1">1</button>
+                            <button class="calc-btn digit" data-value="2">2</button>
+                            <button class="calc-btn digit" data-value="3">3</button>
+                            <button class="calc-btn op" data-action="operator" data-value="+">+</button>
+
+                            <!-- Ряд 5 -->
+                            <button class="calc-btn digit" data-value="0">0</button>
+                            <button class="calc-btn digit" data-action="decimal">.</button>
+                            <button class="calc-btn erase erase" data-action="erase">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+                                    <line x1="18" y1="9" x2="12" y2="15"></line>
+                                    <line x1="12" y1="9" x2="18" y2="15"></line>
+                                </svg>
+                            </button>
+                            <button class="calc-btn op" data-action="equals">=</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая часть: Текст точь-в-точь как на скриншоте -->
+                <div class="card-content">
+                    <h2>Калькулятор для калькулирования</h2>
+                    <ul>
+                        <li>Нажимайте белыые кнопки для ввода чисел.</li>
+                        <li>Нажимайте рыжие кнопки для арифметических операций.</li>
+                        <li>Нажимайте синие кнопки.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand">
+                <svg width="120" height="28" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#F46C38"/>
+                    <text x="8" y="23" font-family="Figtree, Arial" font-weight="800" font-size="18" fill="#fff">C</text>
+                    <text x="42" y="23" font-family="Figtree, Arial" font-weight="700" font-size="18" fill="#fff">CloudCalc</text>
+                </svg>
+                <p>Сиайт для вычисления вычислений.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2025 CloudCalc. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
