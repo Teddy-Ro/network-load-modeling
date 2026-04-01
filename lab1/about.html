@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About — CloudCalc</title>
-    <!-- Подключаем тот же самый CSS-файл, чтобы дизайн был одинаковым -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ===== HEADER (точно такой же, как на главной) ===== -->
+    <!-- HEADER -->
     <header class="site-header">
         <div class="container header-content">
-            <!-- Ссылка при клике на логотип теперь ведет на главную (index.html) -->
             <a href="index.html" class="logo">
                 <svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="32" height="32" rx="8" fill="#F46C38"/>
@@ -22,7 +20,6 @@
 
             <nav class="main-nav">
                 <ul class="nav-list">                    
-                    <!-- Ссылки на страницы -->
                     <li class="nav-item"><a href="index.html" class="nav-link">Calculator</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 </ul>
@@ -30,25 +27,24 @@
         </div>
     </header>
 
-            <!-- ===== FEATURE CARD С ИНФОРМАЦИЕЙ ===== -->
+
     <section class="content" id="calculator">
         <div class="content-bubble">
             <div class="card-container">
-                 <div class="container" style="padding: 40px 24px; min-height: 50vh;">
-                    <h1 style="font-size: 2.5rem; margin-bottom: 20px;">О проекте</h1>
-                    <p style="font-size: 1.2rem; color: #4B5563; line-height: 1.8; max-width: 800px;">
-                        Это вторая страница. 
-                    </p>
+                <div class="container project-info">
+                    <h1 class="project-title">О проекте</h1>
+                    <a href="https://www.kentik.com" class="btn-cta">Сайт моей темы</a>
+                    <a href="https://github.com/Teddy-Ro/network-load-modeling" class="btn-cta">Мой гитхаб</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER (точно такой же, как на главной) ===== -->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="container footer-grid">
             <div class="footer-col footer-brand">
-                <svg width="120" height="28" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="120" height="28" viewBox="0 0 140 32" fill="none">
                     <rect width="32" height="32" rx="8" fill="#F46C38"/>
                     <text x="8" y="23" font-family="Figtree, Arial" font-weight="800" font-size="18" fill="#fff">C</text>
                     <text x="42" y="23" font-family="Figtree, Arial" font-weight="700" font-size="18" fill="#fff">CloudCalc</text>
@@ -57,10 +53,9 @@
             </div>
             <div class="footer-col">
                 <h4>Company</h4>
-                <!-- Здесь тоже можно указать ссылки на about.html -->
                 <a href="about.html">About</a>
                 <a href="#">Blog</a>
-                <a href="#">Contact</a>
+                <a href="https://github.com/Teddy-Ro/network-load-modeling">Contact</a>
             </div>
         </div>
         <div class="container footer-bottom">
@@ -72,8 +67,5 @@
         </div>
     </footer>
 
-    <!-- Если на этой странице нет калькулятора, скрипт можно не подключать.
-         Или подключить, если там будут другие интерактивные элементы -->
-    <!-- <script src="script.js"></script> -->
 </body>
 </html>

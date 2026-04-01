@@ -403,3 +403,52 @@ img {
         font-size: 20px;
     }
 }
+
+.project-info {
+    padding: 40px 24px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+.project-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.project-desc {
+    font-size: 1.2rem;
+    color: #4B5563;
+    line-height: 1.8;
+    max-width: 800px;
+    margin-bottom: 40px;
+}
+
+.btn-cta {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 280px;
+    margin:20px 0;
+    padding: 12px 30px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #003366; 
+    background-color: transparent;
+    border: 2px solid #003366;
+    border-radius: 40px; 
+    text-decoration: none;
+    transition: all 0.2s ease-in-out; 
+    cursor: pointer;
+}
+
+.btn-cta:hover {
+    background-color: #003366;
+    color: #FFFFFF;
+}
+
+.btn-cta:active {
+    transform: scale(0.97);
+}
