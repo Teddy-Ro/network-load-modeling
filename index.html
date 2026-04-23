@@ -3,12 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudCalc — Аналитическое моделирование</title>
+    <title>CloudCalc — Network Engineering Tool</title>
 </head>
 <body>
-    <div id="app"></div>
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="#" class="logo" id="nav-logo">
+                <svg width="140" height="32" viewBox="0 0 140 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#F46C38"/>
+                    <text x="8" y="23" font-family="Arial" font-weight="800" font-size="18" fill="#fff">C</text>
+                    <text x="42" y="23" font-family="Arial" font-weight="700" font-size="18" fill="#17181B">CloudCalc</text>
+                </svg>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-list">                    
+                    <li class="nav-item"><a href="#" class="nav-link" id="nav-home">Домой</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="nav-about">О проекте</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <script src="styles.js"></script>
+    <main class="content container" id="app"></main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 CloudCalc. Лабораторная работа №3.</p>
+        </div>
+    </footer>
+
     <script src="data.js"></script>
     <script src="about.js"></script>
     <script src="script.js"></script>
