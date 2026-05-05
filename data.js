@@ -1,5 +1,5 @@
 // Модель данных с расширенной информацией
-const servicesMockData = [
+let servicesMockData = [
     {
         id: 1,
         title: 'BGP Routing Modeling',

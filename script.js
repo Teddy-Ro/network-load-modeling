@@ -1,6 +1,41 @@
 const app = document.getElementById('app');
 
-// --- CSS-in-JS
+// --- ДАННЫЕ ДЛЯ ДЗ (ЧАСТЬ 1) ---
+// Коллекция данных логов для анализа (имитация потока данных)
+const network_traffic_logs = [
+    "NODE_ALPHA:LOAD_20%",
+    "NODE_BETA:LOAD_85%:CRITICAL",
+    "NODE_GAMMA:LOAD_40%",
+    "NODE_DELTA:LOAD_95%:CRITICAL",
+    "NODE_EPSILON:LOAD_10%",
+    "TERMINATE_SCAN" // Метка остановки для цикла
+];
+
+function runNetworkDiagnostic(logs) {
+    let i = 0;
+    const critical_reports = []; // Коллекция (массив) объектов
+
+    // Цикл с условием (не по счетчику) - пока не встретим флаг остановки
+    while (i < logs.length && logs[i] !== "TERMINATE_SCAN") {
+        let entry = logs[i]; // Работа со строкой
+
+        if (entry.includes("CRITICAL")) {
+            let parts = entry.split(':');
+            // Создание объекта по теме
+            let report_item = {
+                node_name: parts[0],
+                load_value: parts[1].replace('LOAD_', ''),
+                alert_level: 'High',
+                detected_at: new Date().toLocaleTimeString()
+            };
+            critical_reports.push(report_item);
+        }
+        i++;
+    }
+    return critical_reports;
+}
+
+// --- CSS-IN-JS: ВНЕДРЕНИЕ СТИЛЕЙ ---
 const injectStyles = () => {
     const styleTag = document.createElement('style');
     styleTag.textContent = `
@@ -8,17 +43,12 @@ const injectStyles = () => {
             font-family: 'Figtree';
             src: url('fonts/Figtree-VariableFont_wght.ttf') format('truetype');
             font-weight: 300 900;
-            font-style: normal;
-            font-display: swap;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
         body {
             color: #17181B;
-            font-family: Figtree, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-weight: 400;
-            line-height: 1.6;
+            font-family: 'Figtree', sans-serif;
             background-color: #FCFAF4;
             display: flex;
             flex-direction: column;
@@ -27,11 +57,10 @@ const injectStyles = () => {
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
 
-        /* ОРИГИНАЛЬНЫЙ HEADER */
+        /* HEADER */
         .site-header {
             background-color: rgba(254, 254, 252, 0.95);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             height: 72px;
             margin: 15px;
             border-radius: 16px;
@@ -40,22 +69,18 @@ const injectStyles = () => {
             z-index: 1000;
             box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08);
         }
-        .header-content { display: flex; justify-content: flex-start; align-items: center; gap: 48px; height: 100%; }
-        .logo { text-decoration: none; flex-shrink: 0; display: flex; align-items: center; }
+        .header-content { display: flex; align-items: center; gap: 48px; height: 100%; }
         .nav-list { display: flex; list-style: none; gap: 32px; }
-        .nav-link {
-            text-decoration: none; color: #17181B; font-weight: 500;
-            font-size: 16px; transition: all 0.2s; padding: 24px 0; display: block;
-        }
-        .nav-link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+        .nav-link { text-decoration: none; color: #17181B; font-weight: 500; font-size: 16px; cursor: pointer; }
+        .nav-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 
-        /* КНОПКИ В СТИЛЕ KENTIK (Все синие) */
+        /* KENTIK BUTTONS (Всегда синие) */
         .btn-kentik {
             display: inline-flex;
             justify-content: center;
             align-items: center;
             padding: 10px 28px;
-            font-family: 'Figtree', sans-serif;
+            font-family: inherit;
             font-size: 16px;
             font-weight: 500;
             color: #002B5B; 
@@ -66,57 +91,124 @@ const injectStyles = () => {
             transition: all 0.2s ease-in-out; 
             cursor: pointer;
         }
-        .btn-kentik:hover { background-color: #002B5B; color: #FFFFFF; }
+        .btn-kentik:hover { background-color: #002B5B !important; color: #FFFFFF !important; }
         .btn-kentik:active { transform: scale(0.97); }
 
-        /* КАРТОЧКИ И КОНТЕНТ */
+        /* GRID & CARDS */
         .content { padding: 40px 0 80px; flex-grow: 1; }
         .services-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .services-header h1 { font-size: 2.2rem; font-weight: 700; }
-        
         .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; }
         .service-card {
             background: #FFFFFF; border: 1px solid #b6c3d1; border-radius: 28px;
             overflow: hidden; display: flex; flex-direction: column;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); transition: transform 0.3s ease;
         }
-        .service-card:hover { transform: translateY(-4px); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08); }
+        .service-card:hover { transform: translateY(-4px); }
         .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid #b6c3d1; }
         .card-body { padding: 24px; flex-grow: 1; }
-        .card-body h3 { font-size: 1.4rem; margin-bottom: 12px; font-weight: 700; color: #111827; }
-        .card-body p { color: #4B5563; font-size: 1.05rem; line-height: 1.6; }
-        .card-footer { padding: 0 24px 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+        .card-footer { padding: 0 24px 24px; display: flex; gap: 12px; }
 
-        /* СТРАНИЦА ПОДРОБНЕЕ */
-        .detail-page { background: #fff; padding: 60px; border-radius: 32px; border: 1px solid #b6c3d1; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); }
+        /* ПОДРОБНЕЕ + 3D */
+        .detail-page { background: #fff; padding: 40px; border-radius: 32px; border: 1px solid #b6c3d1; }
         .detail-img { 
             width: 100%; 
-            aspect-ratio: 21 / 11; 
+            aspect-ratio: 21 / 9; 
             object-fit: cover; 
             border-radius: 16px; 
-            margin-bottom: 30px; 
+            margin-bottom: 24px; 
         }
-        .detail-page h1 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 700; }
-        .detail-page p { font-size: 1.2rem; color: #4B5563; line-height: 1.8; margin-bottom: 30px; }
+        #three-canvas-container { 
+            width: 100%; 
+            height: 400px; 
+            background: #f8fafc; 
+            border-radius: 16px; 
+            margin-bottom: 24px; 
+            border: 1px solid #e5e7eb;
+        }
+        .report-box { 
+            margin-top: 30px; 
+            padding: 20px; 
+            background: #f0f4f8; 
+            border-radius: 12px; 
+            border-left: 5px solid #002B5B;
+        }
 
-        /* ОРИГИНАЛЬНЫЙ FOOTER */
-        .site-footer { background: #0B1A33; color: #fff; padding: 60px 0 0; width: 100%; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .footer-brand p { color: #8899AA; font-size: 14px; margin-top: 16px; line-height: 1.6; max-width: 260px; }
-        .footer-col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: #8899AA; }
-        .footer-col a { display: block; text-decoration: none; color: #C5D0DB; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
-        .footer-col a:hover { color: #F46C38; }
-        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; font-size: 13px; color: #667788; }
+        /* FOOTER */
+        .site-footer { background: #0B1A33; color: #fff; padding: 40px 0; margin-top: auto; text-align: center; }
     `;
     document.head.appendChild(styleTag);
 };
 
-// --- КОНТРОЛЛЕРЫ И ПРЕДСТАВЛЕНИЯ ---
+function init3DScene(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8fafc);
+
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    // Отдалили камеру чуть дальше, так как реальные модели бывают большими
+    camera.position.z = 5; 
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    // Добавляем хороший свет, чтобы модель не была черной
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(ambientLight);
+    
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
+
+    let myModel; // Переменная для хранения загруженной модели
+
+    // Загружаем реальную модель
+    const loader = new THREE.GLTFLoader();
+    
+    // ВНИМАНИЕ: укажи правильное имя твоего скачанного файла!
+    loader.load('models/server.glb', function(gltf) {
+        myModel = gltf.scene;
+        
+        // Настройка размера (подбирай под свою модель: 0.5, 1, 2 и т.д.)
+        myModel.scale.set(1.5, 1.5, 1.5); 
+        
+        // Опускаем модель чуть ниже центра, чтобы она красиво стояла
+        myModel.position.set(0, -1, 0); 
+        
+        scene.add(myModel);
+    }, undefined, function(error) {
+        console.error('Ошибка при загрузке модели:', error);
+        alert("Модель не загрузилась! Проверь пути к файлам и запущен ли локальный сервер.");
+    });
+
+    // Анимация вращения
+    function animate() {
+        requestAnimationFrame(animate);
+        
+        // Если модель загрузилась, медленно вращаем ее по оси Y
+        if (myModel) {
+            myModel.rotation.y += 0.005;
+        }
+        
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+}
+
+// --- RENDERING VIEWS ---
 
 function renderHomeView() {
     let html = `
         <div class="services-header">
-            <h1>Услуги моделирования</h1>
+            <h1>Услуги и Модели</h1>
             <button class="btn-kentik" onclick="addService()">Добавить услугу</button>
         </div>
         <div class="card-grid">
@@ -125,7 +217,7 @@ function renderHomeView() {
     servicesMockData.forEach((service, index) => {
         html += `
             <div class="service-card">
-                <img src="${service.image}" class="card-img" alt="${service.title}">
+                <img src="${service.image}" class="card-img">
                 <div class="card-body">
                     <h3>${service.title}</h3>
                     <p>${service.description}</p>
@@ -146,17 +238,26 @@ function renderDetailView(id) {
     const service = servicesMockData.find(s => s.id === id);
     if (!service) return;
 
+    // Выполнение логики ДЗ (Часть 1)
+    const alerts = runNetworkDiagnostic(network_traffic_logs);
+
     app.innerHTML = `
         <div class="detail-page">
-            <button class="btn-kentik" onclick="renderHomeView()" style="margin-bottom: 30px;">← Назад</button>
+            <button class="btn-kentik" onclick="renderHomeView()" style="margin-bottom: 20px;">← Назад</button>
+            
             <img src="${service.image}" class="detail-img">
+            
             <h1>${service.title}</h1>
+
+            <h3>3D-визуализация узла:</h3>
+            <div id="three-canvas-container"></div>
+
             <p>${service.details}</p>
-            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #e5e7eb;">
-                <button class="btn-kentik">Оставить заявку на эту услугу</button>
-            </div>
         </div>
     `;
+
+    // Инициализируем 3D сцену после того, как контейнер появился в DOM
+    init3DScene('three-canvas-container');
     window.scrollTo(0, 0);
 }
 
@@ -164,7 +265,8 @@ function renderAboutView() {
     app.innerHTML = AboutPage.render();
 }
 
-// --- ЛОГИКА ---
+// --- CRUD & ACTIONS ---
+
 window.addService = () => {
     if (servicesMockData.length > 0) {
         const copy = { ...servicesMockData[0], id: Date.now() };
@@ -178,11 +280,11 @@ window.deleteService = (index) => {
     renderHomeView();
 };
 
-// --- НАВИГАЦИЯ ---
+// --- SPA NAVIGATION ---
 document.getElementById('nav-home').onclick = (e) => { e.preventDefault(); renderHomeView(); };
 document.getElementById('nav-logo').onclick = (e) => { e.preventDefault(); renderHomeView(); };
 document.getElementById('nav-about').onclick = (e) => { e.preventDefault(); renderAboutView(); };
 
-// --- СТАРТ ---
+// Инициализация
 injectStyles();
 renderHomeView();
