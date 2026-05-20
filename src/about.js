@@ -1,4 +1,4 @@
-const AboutPage = {
+export const AboutPage = {
     render: function() {
         return `
             <div style="background: #fff; padding: 60px; border-radius: 32px; border: 1px solid #b6c3d1; margin-bottom: 40px;">
@@ -9,7 +9,7 @@ const AboutPage = {
                     Заявки — запрос с входными данными.
                 </p>
                 <div style="display: flex; gap: 15px;">
-                    <a href="https://github.com/Teddy-Ro/network-load-modeling" target="_blank" class="btn-kentik">Мой GitHub</a>
+                    <a href="https://github.com/Teddy-Ro/network-load-modeling" target="_blank" class="btn-cta">Мой GitHub</a>
                 </div>
             </div>
         `;

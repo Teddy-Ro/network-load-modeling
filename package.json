@@ -1,10 +1,10 @@
 {
-  "name": "psp",
+  "name": "network-load-modeling-frontend",
   "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
+  "description": "Frontend for lr 6",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html edit.html",
+    "build": "parcel build index.html edit.html --public-url ./"
   },
   "repository": {
     "type": "git",
@@ -13,9 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Teddy-Ro/network-load-modeling/issues"
-  },
-  "homepage": "https://github.com/Teddy-Ro/network-load-modeling#readme"
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
 }
