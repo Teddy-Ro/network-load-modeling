@@ -6,6 +6,8 @@ const PORT = 3000;
 
 app.use(express.json());
 
+app.use(express.static('public'));
+
 app.use('/api/requests', requestsRouter);
 
 app.listen(PORT, () => {
