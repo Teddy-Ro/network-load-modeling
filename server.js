@@ -9,6 +9,6 @@ app.use(express.json());
 app.use('/api/requests', requestsRouter);
 
 app.listen(PORT, () => {
-    console.log(`Сервер моделирования сетей запущен на порту ${PORT}`);
+    console.log(`Сервер запущен на порту ${PORT}`);
     console.log(`URL: http://localhost:${PORT}/api/requests`);
 });

@@ -66,7 +66,7 @@ router.post('/', (req, res) => {
     res.status(201).json(newRequest);
 });
 
-router.put('/:id', (req, res) => {
+router.patch('/:id', (req, res) => {
     const requests = readData();
     const index = requests.findIndex(r => r.id === req.params.id);
 

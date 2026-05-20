@@ -25,14 +25,17 @@
     "results": null
   },
   {
-    "id": "1778004361035",
-    "equipmentType": "Межсетевой экран (Firewall)",
+    "id": "1778161924952",
+    "equipmentType": "Крутой Межсетевой экран  (Firewall)",
     "modelingType": "Оценка задержки при фильтрации трафика",
-    "status": "pending",
+    "status": "completed",
     "inputData": {
       "packetArrivalRate": 300,
       "processingRate": 350
     },
-    "results": null
+    "results": {
+      "utilization": "85%",
+      "averageDelay": "20ms"
+    }
   }
 ]
