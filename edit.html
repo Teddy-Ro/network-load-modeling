@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр заявки — CloudCalc</title>
+    
+    <style>
+        /* шрифт и базовые настройки */
+        @font-face {
+            font-family: 'Figtree';
+            src: url('fonts/Figtree-VariableFont_wght.ttf') format('truetype');
+            font-weight: 300 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            color: #17181B;
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #FCFAF4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+        /* Стили шапки (идентичны главной странице) */
+        .site-header {
+            background-color: rgba(254, 254, 252, 0.95);
+            backdrop-filter: blur(12px);
+            height: 72px;
+            margin: 15px;
+            border-radius: 16px;
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08);
+        }
+        .header-content { display: flex; justify-content: flex-start; align-items: center; gap: 48px; height: 100%; }
+        .logo { text-decoration: none; display: flex; align-items: center; }
+        .nav-list { display: flex; list-style: none; gap: 32px; }
+        .nav-link { text-decoration: none; color: #17181B; font-weight: 500; font-size: 16px; transition: 0.2s; }
+        .nav-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+        /* Кнопка в стиле Kentik */
+        .btn-kentik {
+            display: inline-flex; justify-content: center; align-items: center;
+            padding: 10px 28px; font-family: 'Figtree', sans-serif; font-size: 16px; font-weight: 500;
+            color: #002B5B; background-color: transparent; border: 2px solid #002B5B; border-radius: 40px; 
+            text-decoration: none; transition: all 0.2s ease-in-out; cursor: pointer;
+        }
+        .btn-kentik:hover { background-color: #002B5B; color: #FFFFFF; }
+
+        /* Стили для карточки формы */
+        .content { padding: 40px 0 80px; flex-grow: 1; }
+        .header-actions { margin-bottom: 30px; }
+        
+        .form-card {
+            background: #FFFFFF; 
+            border: 1px solid #b6c3d1; 
+            border-radius: 28px;
+            padding: 40px 50px; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            max-width: 600px; 
+            margin: 0 auto;
+        }
+        
+        .form-card h1 { 
+            font-size: 2.2rem; 
+            font-weight: 700; 
+            margin-bottom: 30px; 
+            color: #111827;
+            text-align: center;
+        }
+        
+        /* Стили полей ввода */
+        .form-group { margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-weight: 600; color: #4B5563; font-size: 0.95rem; }
+        .form-group input {
+            padding: 14px 16px; 
+            border-radius: 12px; 
+            border: 1px solid #b6c3d1;
+            font-family: 'Figtree', sans-serif; 
+            font-size: 16px; 
+            width: 100%;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        /* Вид заблокированных полей (disabled) */
+        .form-group input:disabled { 
+            background-color: #f8fafc; 
+            color: #64748b;
+            cursor: not-allowed; 
+            border-color: #e2e8f0;
+        }
+        
+        .note { 
+            color: #6b7280; 
+            font-size: 0.9rem; 
+            margin-top: 30px; 
+            text-align: center; 
+            padding: 15px;
+            background-color: #f3f4f6;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <svg width="140" height="32" viewBox="0 0 140 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#F46C38"/>
+                    <text x="8" y="23" font-family="Arial" font-weight="800" font-size="18" fill="#fff">C</text>
+                    <text x="42" y="23" font-family="Arial" font-weight="700" font-size="18" fill="#17181B">CloudCalc</text>
+                </svg>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-list">                    
+                    <li class="nav-item"><a href="index.html" class="nav-link">Домой</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content container">
+        <div class="header-actions">
+            <button class="btn-kentik" onclick="window.location.href='index.html'">← Назад к списку</button>
+        </div>
+
+        <div class="form-card">
+            <h1 id="formTitle">Новая заявка</h1>
+            
+            <form id="editForm" onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <label>Тип оборудования (Услуга):</label>
+                    <input type="text" id="equipmentType" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Вид моделирования:</label>
+                    <input type="text" id="modelingType" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Интенсивность поступления (заявок/с):</label>
+                    <input type="number" id="packetArrivalRate" disabled>
+                </div>
+                
+                <p class="note">Кнопка сохранения и возможность редактирования будут добавлены в Лабораторной работе №6.</p>
+            </form>
+        </div>
+    </main>
+
+    <script src="edit.js"></script>
+</body>
+</html>
