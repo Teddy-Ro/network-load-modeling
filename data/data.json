@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "equipmentType": "Маршрутизатор (Router)",
+    "modelingType": "Анализ пропускной способности (СМО M/M/1)",
+    "status": "completed",
+    "inputData": {
+      "packetArrivalRate": 1000,
+      "processingRate": 1200
+    },
+    "results": {
+      "utilization": "83%",
+      "averageQueueLength": 4.16
+    }
+  },
+  {
+    "id": "2",
+    "equipmentType": "Сетевой коммутатор (Switch)",
+    "modelingType": "Оценка вероятности потери пакетов",
+    "status": "pending",
+    "inputData": {
+      "packetArrivalRate": 5000,
+      "bufferSize": 50
+    },
+    "results": null
+  },
+  {
+    "id": "1778004361035",
+    "equipmentType": "Межсетевой экран (Firewall)",
+    "modelingType": "Оценка задержки при фильтрации трафика",
+    "status": "pending",
+    "inputData": {
+      "packetArrivalRate": 300,
+      "processingRate": 350
+    },
+    "results": null
+  }
+]
