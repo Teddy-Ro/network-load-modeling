@@ -1,5 +1,5 @@
 
-# Лабораторная работа №6. Moon Reports Frontend (fetch + async/await + Bundler)
+# Лабораторная работа №6. Reports Frontend (fetch + async/await + Bundler)
 
 ## Оглавление
 1. [Цель лабораторной работы](#1-цель-лабораторной-работы)
