@@ -1,4 +1,4 @@
-# Лабораторная работа №4. Moon Reports API. Node.js + Express
+# Лабораторная работа №4. Reports API. Node.js + Express
 
 ## Цель работы
 Изучение основ backend-разработки на Node.js и Express, создание собственного REST API с хранением данных в JSON-файле.
